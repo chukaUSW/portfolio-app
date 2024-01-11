@@ -1,0 +1,22 @@
+version: "3"
+services:
+  portfolio-server:
+    image: portfolio-server
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./server:/usr/share/app
+    environment:
+      - PORT=3000
+      - MONGO_URL=mongodb://portfolio-database:27017/portfolio-db
+    depends_on:
+      - portfolio-database
+  portfolio-database:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - portfolio-mongo:/data/db
+volumes:
+  portfolio-mongo:
+    driver: local
