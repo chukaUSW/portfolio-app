@@ -1,0 +1,5 @@
+To run this app via docker-compose:
+1. Go to the server folder and build the image with the tag "portfolio-server"
+2. Come back to the root folder and run docker-compose up
+
+Thanks
