@@ -20,7 +20,9 @@
           <strong>Skill Description:</strong>
           <%= skills[index].skillDescription %>
         </p>
-        <a href="#" class="btn btn-warning">Edit Project</a>
+        <a href="/edit/<%= skills[index]._id %>" class="btn btn-warning"
+          >Edit Project</a
+        >
         <a href="/delete/<%= skills[index]._id %>" class="btn btn-danger"
           >Delete Project</a
         >

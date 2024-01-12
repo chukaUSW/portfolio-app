@@ -36,6 +36,53 @@ skillsRouter.post("/", async (req, res) => {
   res.redirect("/");
 });
 
+skillsRouter.get("/projects", async (req, res) => {
+  const skills = await Skill.find();
+  res.render("index.ejs", { skills });
+});
+
+skillsRouter.get("/skills", async (req, res) => {
+  const skills = await Skill.find(
+    {},
+    { skillName: true, skillDescription: true, _id: true }
+  );
+  console.log(skills);
+  res.render("skills.ejs", { skills });
+});
+
+// Update
+skillsRouter.post("/update", async (req, res) => {
+  const {
+    id,
+    skillName,
+    skillDescription,
+    projectName,
+    projectTechStack,
+    projectDescription,
+  } = req.body;
+
+  const updated = await Skill.findByIdAndUpdate(id, {
+    skillName,
+    skillDescription,
+    projectName,
+    projectTechStack,
+    projectDescription,
+  });
+
+  res.redirect("/");
+});
+
+skillsRouter.get("/edit/:id", async (req, res) => {
+  const id = req.params.id;
+
+  if (!id) {
+    return res.redirect("/");
+  }
+
+  const skill = await Skill.findById(id);
+  res.render("edit-skill.ejs", { skill });
+});
+
 skillsRouter.get("/delete/:id", async (req, res) => {
   const id = req.params.id;
 
@@ -45,11 +92,6 @@ skillsRouter.get("/delete/:id", async (req, res) => {
 
   const deleted = await Skill.findByIdAndDelete(id);
   res.redirect("/");
-});
-
-skillsRouter.get("/projects", async (req, res) => {
-  const skills = await Skill.find();
-  res.render("index.ejs", { skills });
 });
 
 export default skillsRouter;

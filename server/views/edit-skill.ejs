@@ -1,0 +1,71 @@
+<% if (skill) { %>
+<h1>Edit <%= skill.skillName %></h1>
+<form action="/update" method="post">
+  <input type="text" name="id" value="<%= skill._id %>" hidden />
+  <div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Skill Name:</label>
+    <input
+      type="text"
+      name="skillName"
+      class="form-control"
+      id="exampleFormControlInput1"
+      placeholder="Javascript"
+      value="<%= skill.skillName %>"
+      required
+    />
+  </div>
+  <div class="mb-3">
+    <label for="exampleFormControlTextarea1" class="form-label"
+      >Skill Description:
+    </label>
+    <textarea
+      name="skillDescription"
+      class="form-control"
+      id="exampleFormControlTextarea1"
+      rows="3"
+      required
+    >
+    <%= skill.skillDescription %>
+    </textarea>
+  </div>
+  <div class="mb-3">
+    <label for="projName" class="form-label">Project Name:</label>
+    <input
+      type="text"
+      name="projectName"
+      class="form-control"
+      id="projName"
+      placeholder="Portfolio App"
+      value="<%= skill.projectName %>"
+      required
+    />
+  </div>
+  <div class="mb-3">
+    <label for="projDesc" class="form-label">Project Description: </label>
+    <textarea
+      name="projectDescription"
+      class="form-control"
+      id="projDesc"
+      rows="3"
+      required
+    >
+    <%= skill.projectDescription %>
+    </textarea>
+  </div>
+  <div class="mb-3">
+    <label for="projName" class="form-label">Project Tech Stack:</label>
+    <input
+      type="text"
+      name="projectTechStack"
+      class="form-control"
+      id="projStack"
+      placeholder="MERN Stack"
+      value="<%= skill.projectTechStack %>"
+      required
+    />
+  </div>
+  <button type="submit" class="btn-primary btn-lg">Update Skill</button>
+</form>
+<% } else { %>
+<h4>No Skills Found</h4>
+<% } %>
